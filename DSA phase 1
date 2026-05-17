@@ -1,5 +1,6 @@
 //Problem Solving in DSA (baiscs + intermediate)
 // 1 - ARMSTRONG NUMBER
+//EXAMPLE : INPUT: NUM = 371 , OUTPUT: TRUE, EXPLANATION : (3^3 + 7^3 + 1^3 = 371)
 #include<iostream>
 #include<math.h>
 using namespace std;
@@ -21,7 +22,9 @@ int main(){
    cin>>num;
    armstrongnumber(num);
 }
+
 // 2 - PRIME NUMBER
+//EXAMPLE : INPUT: NUM = 5, OUTPUT: TRUE;
 #include<iostream>
 using namespace std;
 bool isprime(int num){
@@ -46,6 +49,7 @@ int main(){
       cout<<"Not Prime"<<endl;
    }
 }
+
 // 3 - SUM OF ALL PALINDROME NUMBERS IN THE ARRAY
 #include<iostream>
 using namespace std;
@@ -72,3 +76,106 @@ int main(){
     cout << "Palindrome count = " << sum;
     return 0;
 }
+
+// 4 - HIGHEST POWER OF 2
+// EXAMPLE : INPUT: NUM = 20, OUTPUT: HIGHEST POWER OF 2 = 16
+#include<iostream>
+using namespace std;
+int powerofnumber(int n){
+   int power = 1;
+   while(power*2 <= n){
+      power = power * 2;
+   }
+   return power;
+}
+int main(){
+   int num;
+   cout<<"Enter the number: ";
+   cin>>num;
+   cout<<"The power of 2 is: "<<powerofnumber(num)<<endl;
+}
+
+// 5 - SERIES WHERE EACH TERM IS THE FACTORIAL OF THE POSITION
+// EXAMPLE : INPUT: NUM = 5, OUTPUT: 1 2 6 24 120
+#include<iostream>
+using namespace std;
+int factorial(int n){
+    int fact = 1;
+    for(int i=1; i<=n; i++){
+        fact = fact * i;
+    }
+   return fact;
+}
+int main(){
+   int num;
+   cout<<"Enter the number: ";
+   cin>>num;
+   for(int i=1; i<=num; i++){
+      cout<<factorial(i)<<" ";
+   }
+}
+
+// 6 - COUNT NUMBER OF VOWELS IN A STRING
+//EXAMPLE : INPUT: STRING = "abcdefgh", OUTPUT: 2
+#include<iostream>
+using namespace std;
+int countvowels(string s){
+    int count = 0;
+   for(int i=0; i<s.size(); i++){
+      if(s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u'){
+         count++;
+      }
+   }
+   return count;
+}
+int main(){
+   string s;
+   cout<<"Enter the string: ";
+   cin>>s;
+   cout<<"The number of vowels are: "<<countvowels(s)<<endl;
+}
+
+// 7 - PRINT THE PATTERNS
+i) *      RIGHT TRIANGLE STAR PATTERN
+   **
+   ***
+   ****
+   *****
+#include<iostream>
+using namespace std;
+int main(){
+   int n;
+   cout<<"Enter the number: ";
+   cin>>n;
+   for(int i=0; i<n; i++){
+      for(int j=i; j>=0; j--){
+         cout<<"*";
+      }
+      cout<<endl;
+   }
+}
+
+ii) *  HOLLOW RIGHT TRIANGLE STAR PATTERN
+    **
+    * *
+    *  *
+    *****
+#include<iostream>
+using namespace std;
+int main(){
+   int n;
+   cout<<"Enter the number: ";
+   cin>>n;
+   for(int i=1; i<=n; i++){
+      for(int j=1; j<=i; j++){
+         if(j==1 || j==i || i==n){
+            cout<<"*";
+         }
+         else {
+            cout<<" ";
+         }
+      }
+      cout<<endl;
+   }
+}
+
