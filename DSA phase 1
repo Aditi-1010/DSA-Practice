@@ -324,3 +324,94 @@ int main() {
     }
     return 0;
 }
+
+//  8 - MULTIPLICATION TABLE (n*1 to n*10)
+//EXAMPLE : INPUT: NUM = 2, OUTPUT: 2x1=2 2x2=4 .... 2x10=20
+#include<iostream>
+using namespace std;
+int main(){
+   int n;
+   cout<<"Enter the number: ";
+   cin>>n;
+   for(int i=1; i<=10; i++){
+      cout<<n<<" x "<<i<<" = "<<n*i<<endl;
+   }
+}
+
+// 9 - SUM OF ALL INTEGERS FROM 1 TO N USING RECUSRSION
+//EXAMPLE : INPUT: NUM = 10, OUTPUT: 55 (1+2+...10 = 55)
+#include<iostream>
+using namespace std;
+int sum(int n){
+   if(n==0) return 0;
+   else return n+sum(n-1);
+}
+int main(){
+   int n;
+   cout<<"Enter the number: ";
+   cin>>n;
+   cout<<sum(n);
+}
+
+// 10 - CALCULATE GCD OF TWO NUMBERS USING EUCLID'S ALGORITHM
+// EXAMPLE : INPUT: NUM1 = 48, NUM2 = 18, OUTPUT: GCD = 6
+// EXPLANATION : 48/18 REMAINDER = 12, NOW 18/12 REMAINDER = 6, NOW 12/6 REMAINDER = 0, LAST NON ZERO REMAINDER = 6, SO GCD = 6
+#include<iostream>
+using namespace std;
+int main(){
+   int n1, n2;
+   cout<<"Enter n1 and n2: ";
+   cin>>n1>>n2;
+   int rem = n1%n2;
+   while(rem!=0){
+      n1=n2;
+      n2=rem;
+      rem=n1%n2;
+   }
+   cout<<"GCD is: "<<n2;
+}
+
+// 11 - BINARY SEARCH USING RECUSRION
+#include<iostream>
+using namespace std;
+int binarySearch(int arr[], int s, int e, int key){
+   if(s>e) return -1;
+   int mid = s + (e-s)/2;
+   if(arr[mid]==key) return mid;
+   if(arr[mid]>key) return binarySearch(arr,s,mid-1,key);
+   return binarySearch(arr,mid+1,e,key);
+}
+int main(){
+   int arr[5] = {1,2,3,4,5};
+   int n = 5;
+   int key;
+   cout<<"Enter the key: ";
+   cin>>key;
+   cout<<"The index is: "<<binarySearch(arr,0,n-1,key)<<endl;
+}
+
+// 12 - MAXIMUM BETWEEN THE NUMBER OF POSITIVE AND NEGATIVE NUMBERS
+// EXAMPLE : INPUT: NUMS=[-1,-2,1,2,3], OUTPUT: 3 (NUMBER OF POSITIVE NUMBERS > NUMBER OF NEGATIVE NUMBERS)
+#include<iostream>
+using namespace std;
+int negativeCount(int arr[], int n){
+   int count = 0;
+   for(int i=0; i<n; i++){
+      if(arr[i]<0) count++;
+   }
+   return count;
+}
+int positiveCount(int arr[], int n){
+   int count = 0;
+   for(int i=0; i<n; i++){
+      if(arr[i]>0) count++;
+   }
+   return count;
+}
+int main(){
+   int arr[5] = {-1,-2,1,2,3};
+   int n = 5;
+   cout<<"The negative count is: "<<negativeCount(arr,n)<<endl;
+   cout<<"The positive count is: "<<positiveCount(arr,n)<<endl;
+   cout<<"The maximum count is: "<<max(negativeCount(arr,n), positiveCount(arr,n))<<endl;
+}
