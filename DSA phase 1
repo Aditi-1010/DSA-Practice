@@ -499,4 +499,132 @@ int main()
     return 0;
 }
 
-// 15 - 
+// 15 - INDICES OF TWO NUMBERS SUCH THAT THEY ADD UP TO TARGET
+// EXAMPLE : INPUT: NUMS[2,7,11,15], TARGET = 9, OUTPUT: [0,1]
+// EXPLANATION: 2+7 = 9, IDX[2] = 0 AND IDX[7] = 1;
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> twoSum(int arr[], int target, int n){
+   unordered_map<int, int> mp;
+   for(int i=0; i<n; i++){
+      int need = target - arr[i];
+      if(mp.find(need) != mp.end()){
+         return {mp[need], i};
+      }
+      mp[arr[i]] = i;
+   }
+   return {};
+}
+int main(){
+   int arr[4] = {2,7,11,15};
+   int target;
+   cout << "Enter the target: ";
+   cin >> target;
+   int n = 4;
+   vector<int> ans = twoSum(arr, target, n);
+   cout << ans[0] << " " << ans[1];
+}
+
+// 16 - INCREMENTED INDICES OF TWO NUMBERS SUCH THAT THEY ADD UP TO TARGET BY 1
+// EXAMPLE : INPUT: NUMS[2,7,11,15], TARGET = 9, OUTPUT: [1,2]
+// EXPLANATION: 2+7 = 9, IDX[2] = 0 AND IDX[7] = 1; AFTER INCREMENTING BY 1 IT BECOMES [1,2]
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> twoSum(int arr[], int target, int n){
+   unordered_map<int, int> mp;
+   for(int i=0; i<n; i++){
+      int need = target - arr[i];
+      if(mp.find(need) != mp.end()){
+         return {mp[need]+1, i+1};
+      }
+      mp[arr[i]] = i;
+   }
+   return {};
+}
+int main(){
+   int arr[4] = {2,7,11,15};
+   int target;
+   cout << "Enter the target: ";
+   cin >> target;
+   int n = 4;
+   vector<int> ans = twoSum(arr, target, n);
+   cout << ans[0] << " " << ans[1];
+}
+
+// 17 - REVERSING AN ARRAY
+// EXAMPLE : INPUT: NUMS=[1, 4, 3, 2, 6, 5], OUTPUT=[5, 6, 2, 3, 4, 1]
+#include<iostream>
+using namespace std;
+void reverseArray(int arr[], int n){
+   int s = 0;
+   int e = n-1;
+   while(s<e){
+      swap(arr[s], arr[e]);
+      s++;
+      e--;
+   }
+   for(int i=0; i<n; i++){
+      cout<<arr[i]<<" ";
+   }
+}
+int main(){
+   int arr[6] = {1, 4, 3, 2, 6, 5};
+   int n = 6;
+   reverseArray(arr, n);
+}
+
+// 18 - FINDING MISSING NUMBERS FROM 1 TO N+2
+// EXAMPLE : INPUT: NUMS=[1, 2, 4, 6, 3, 8], OUTPUT: 5 7
+#include<bits/stdc++.h>
+using namespace std;
+void findMissing(int arr[], int n){
+    int N = n + 2;
+    int totalSum = N * (N + 1) / 2;
+    int arrSum = 0;
+    for(int i=0; i<n; i++){
+        arrSum += arr[i];
+    }
+    int missingSum = totalSum - arrSum;
+    int mid = missingSum / 2;
+    int leftExpected = mid * (mid + 1) / 2;
+    int leftActual = 0;
+    for(int i=0; i<n; i++){
+        if(arr[i] <= mid)
+            leftActual += arr[i];
+    }
+    int first = leftExpected - leftActual;
+    int second = missingSum - first;
+    cout << first << " " << second;
+}
+int main(){
+    int arr[] = {1,2,4,6,3,8};
+    int n = 6;
+    findMissing(arr, n);
+}
+
+// 19 - TRAPPING RAIN WATER
+// EXAMPLE : INPUT: HEIGHT= [0,1,0,2,1,0,1,3,2,1,2,1], OUTPUT: 6
+
+
+// 20 - CONTAINER WITH MOST WATER
+// EXAMPLE : INPUT: HEIGHT = [1,8,6,2,5,4,8,3,7], OUTPUT : 49
+#include<bits/stdc++.h>
+using namespace std;   
+int mostWater(int height[], int n){
+   int i=0, j=n-1;
+   int maxwater = 0;
+   while(i<j){
+      int maxheight = min(height[i], height[j]);
+      int width = j-i;
+      int area = maxheight*width;
+      maxwater = max(maxwater, area);
+      if(height[i]<height[j]) i++;
+      else j--;
+   }
+   return maxwater;
+}
+int main(){
+   int height[9] = {1,8,6,2,5,4,8,3,7};
+   int n = 9;
+   cout<<mostWater(height, n);
+}
